@@ -1,73 +1,98 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## Documentação da API
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+#### URl BASE
+- https://api-meunovopet.onrender.com
 
-## Description
+### Usuários
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+#### Cadastra um novo usuário
 
-## Installation
-
-```bash
-$ npm install
+```http
+  POST /api/v1/usuarios
 ```
 
-## Running the app
+| Parâmetro   | Tipo       | Descrição                                   |
+| :---------- | :--------- | :------------------------------------------ |
+| `nome *`      | `string` | **Obrigatório**. O nome do usuário
+| `email *`      | `string` | **Obrigatório**. O e-mail do usuário
+| `telefone *`      | `string` | **Obrigatório**. O telefone do usuário
+| `cidade/estado *`      | `string` | **Obrigatório**. Cidade/estado do usuário
+| `senha *`      | `string` | **Obrigatório**. A senha do usuário
+| `confirmar_senha *`      | `string` | **Obrigatório**. A confirmação de senha do usuário
 
-```bash
-# development
-$ npm run start
+* *Parâmetros passados no body da requisição HTTP
 
-# watch mode
-$ npm run start:dev
+#### Autenticação de usuário
 
-# production mode
-$ npm run start:prod
+```http
+  POST /api/v1/auth
 ```
 
-## Test
+| Parâmetro   | Tipo       | Descrição                                   |
+| :---------- | :--------- | :------------------------------------------ |
+| `email *`      | `string` | **Obrigatório**. O e-mail do usuário
+| `senha *`      | `string` | **Obrigatório**. A senha do usuário
 
-```bash
-# unit tests
-$ npm run test
+* *Parâmetros passados no body da requisição HTTP
 
-# e2e tests
-$ npm run test:e2e
 
-# test coverage
-$ npm run test:cov
+### Pets
+
+#### Retorna todos os pets
+
+```http
+  GET /api/v1/pets
 ```
 
-## Support
+#### Retorna um pet
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+```http
+  GET /api/v1/pets/${id}
+```
 
-## Stay in touch
+| Parâmetro   | Tipo       | Descrição                                   |
+| :---------- | :--------- | :------------------------------------------ |
+| `id`      | `string` | **Obrigatório**. O ID do pet desejado |
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+#### Cadastra um novo pet
 
-## License
+```http
+  POST /api/v1/pets
+```
 
-Nest is [MIT licensed](LICENSE).
+| Parâmetro   | Tipo       | Descrição                                   |
+| :---------- | :--------- | :------------------------------------------ |
+| `usuario_id **`      | `string` | **Obrigatório**. O ID do usuário
+| `nome *`      | `string` | **Obrigatório**. O nome do pet
+| `raca *`      | `string` | **Obrigatório**. A raça do pet
+| `tipo *`      | `string` | **Obrigatório**. O tipo do pet
+| `idade *`      | `string` | **Obrigatório**. A idade do pet
+| `porte *`      | `string` | **Obrigatório**. O porte do pet
+| `sexo *`      | `string` | **Obrigatório**. O Sexo do pet
+| `imagem *`      | `string` | **Obrigatório**. A imagem do pet
+
+* *Parâmetros passados no body da requisição HTTP
+
+#### Atualiza se o pet está disponível para adoção
+
+```http
+  PUT /api/v1/disponivel/pets/${id}
+```
+
+| Parâmetro   | Tipo       | Descrição                                   |
+| :---------- | :--------- | :------------------------------------------ |
+| `id`      | `string` | **Obrigatório**. O ID do pet
+| `disponivel *`      | `boolean` | **Obrigatório**. A disponibilidade do pet
+
+* *Parâmetros passados no body da requisição HTTP
+
+#### Remove um pet cadastrado
+
+```http
+  DELETE /api/v1/pets/${id}
+```
+
+| Parâmetro   | Tipo       | Descrição                                   |
+| :---------- | :--------- | :------------------------------------------ |
+| `id`      | `string` | **Obrigatório**. O ID do pet
