@@ -51,7 +51,22 @@ export class PetsService {
         id: parseInt(id),
       },
     });
-    return pet;
+
+    const petOwner = await this.prisma.usuarios.findFirst({
+      where: {
+        id: pet.usuario_id,
+      },
+    });
+
+    return {
+      ...pet,
+      usuario: {
+        nome: petOwner.nome,
+        email: petOwner.email,
+        telefone: petOwner.telefone,
+        cidade: petOwner.cidade,
+      },
+    };
   }
 
   async update(id: string, data: UpdatePetDto) {
