@@ -29,9 +29,7 @@ export class PetsService {
 
   async findAll() {
     const allPets = await this.prisma.pets.findMany();
-    return {
-      data: allPets,
-    };
+    return allPets;
   }
 
   async findAllById(id: string) {
@@ -40,9 +38,7 @@ export class PetsService {
         id: parseInt(id),
       },
     });
-    return {
-      data: allPets,
-    };
+    return allPets;
   }
 
   async findOne(id: string) {
