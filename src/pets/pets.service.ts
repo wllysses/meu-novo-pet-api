@@ -35,7 +35,7 @@ export class PetsService {
   async findAllById(id: string) {
     const allPets = await this.prisma.pets.findMany({
       where: {
-        id: parseInt(id),
+        usuario_id: parseInt(id),
       },
     });
     return allPets;
